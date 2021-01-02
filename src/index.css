@@ -1,13 +1,34 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar {
+  @apply flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.sidenav {
+  @apply grid grid-rows-4 text-center items-center bg-green-500;
+}
+
+.page-name {
+  @apply lg:text-9xl md:text-7xl sm:text-5xl text-3xl font-black mb-14;
+}
+
+.hero-button {
+  @apply py-6 px-10 bg-green-500 rounded-full text-2xl hover:bg-yellow-300 transition duration-300 ease-in-out flex items-center animate-bounce;
+}
+
+.post-card {
+  @apply flex flex-col justify-center items-center bg-white h-screen font-mono py-40;
+}
+
+.post-content {
+  @apply flex flex-col justify-center items-center;
+}
+
+@media screen and (min-width: 768px) {
+  .sidenav {
+    display: none;
+  }
 }

@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
+import Footer from "./component/Footer";
+import Navbar from "./component/Navbar";
+import Sidenav from "./component/Sidenav";
+import AddPosts from "./pages/AddPosts";
+import ContentPage from "./pages/ContentPage";
+import HomePage from "./pages/Homepage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
+  const [showSidenav, setShowSidenav] = useState(false);
+
+  const toggleNavButton = () => {
+    setShowSidenav(!showSidenav);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar toggleNavButton={toggleNavButton} />
+      <Sidenav showSidenav={showSidenav} toggleNavButton={toggleNavButton} />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/posts" component={ContentPage} />
+        <Route path="/add-post" component={AddPosts} />
+        <Route path="/login" component={LoginPage} />
+      </Switch>
+      <Footer />
+    </>
   );
 }
 
