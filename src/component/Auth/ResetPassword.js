@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function ResetPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false;
+  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ function ResetPassword() {
   return (
     <div className="form-container">
       <form className="mt-20 p-1" onSubmit={handleFormSubmit}>
-        <h1 className="text-3xl mb-2">Login Page</h1>
+        <h1 className="text-3xl mb-4">Reset Password</h1>
         <label
           htmlFor="email"
           className="block text-m font-medium text-gray-700 mb-1"
@@ -33,7 +33,7 @@ function ResetPassword() {
           type="submit"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-m font-medium rounded-md text-white bg-green-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
         >
-          Save
+          Reset Password
         </button>
       </form>
       <br />
@@ -45,9 +45,9 @@ function ResetPassword() {
       </p>
       <br />
       <p className="block text-m font-medium text-grey-700 mb-1">
-        Forgot your password{" "}
-        <Link className="text-green-700" to="/reset-password">
-          Reset Password
+        Already got an account{" "}
+        <Link className="text-green-700" to="/login">
+          Login
         </Link>
       </p>
     </div>

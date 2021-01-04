@@ -5,7 +5,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false;
+  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ function Login() {
   return (
     <div className="form-container">
       <form className="mt-20 p-1" onSubmit={handleFormSubmit}>
-        <h1 className="text-3xl mb-2">Login Page</h1>
+        <h1 className="text-3xl mb-4">Login Page</h1>
         <label
           htmlFor="email"
           className="block text-m font-medium text-gray-700 mb-1"
@@ -47,7 +47,7 @@ function Login() {
           type="submit"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-m font-medium rounded-md text-white bg-green-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
         >
-          Save
+          Login
         </button>
       </form>
       <br />

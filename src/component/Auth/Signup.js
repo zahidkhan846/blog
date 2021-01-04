@@ -20,7 +20,7 @@ function Signup() {
   return (
     <div className="form-container" onSubmit={handleFormSubmit}>
       <form className="mt-20 p-1">
-        <h1 className="text-3xl mb-2">Login Page</h1>
+        <h1 className="text-3xl mb-4">Signup Page</h1>
         {error && <p className="mb-2 text-red-400">{error}</p>}
         <label
           htmlFor="email"
@@ -69,7 +69,7 @@ function Signup() {
           type="submit"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-m font-medium rounded-md text-white bg-green-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
         >
-          Save
+          Sign Up
         </button>
       </form>
       <br />

@@ -29,7 +29,7 @@ function App() {
         <Route path="/add-post" component={AddPosts} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/reset-pasword" component={ResetPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
       </Switch>
       <Footer />
     </>
