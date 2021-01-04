@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
+function ResetPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false;
 
@@ -29,20 +28,7 @@ function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label
-          htmlFor="password"
-          className="block text-m font-medium text-gray-700 mb-1"
-        >
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          className="mb-5 h-7 focus:border-grey-500 flex-1 block w-full border-2 border-green-500 rounded sm:text-sm"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+
         <button
           type="submit"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-m font-medium rounded-md text-white bg-green-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
@@ -68,4 +54,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ResetPassword;

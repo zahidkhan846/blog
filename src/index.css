@@ -24,11 +24,23 @@
 }
 
 .post-content {
-  @apply flex flex-col justify-center items-center;
+  @apply flex flex-col justify-center items-start w-2/4;
+}
+
+.form-container {
+  @apply m-auto w-96 h-screen;
 }
 
 @media screen and (min-width: 768px) {
   .sidenav {
     display: none;
   }
+}
+
+li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

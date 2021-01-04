@@ -1,12 +1,12 @@
 import React from "react";
-import Content from "../component/Content";
+import Posts from "../component/Posts";
 import Hero from "../component/Hero";
 
 function HomePage() {
   return (
     <>
       <Hero />
-      <Content />
+      <Posts />
     </>
   );
 }
