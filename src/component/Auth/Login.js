@@ -14,7 +14,7 @@ function Login() {
   return (
     <div className="form-container">
       <form className="mt-20 p-1" onSubmit={handleFormSubmit}>
-        <h1 className="text-3xl mb-4">Login Page</h1>
+        <h1 className="text-3xl mb-4 text-green-300">Login Page</h1>
         <label
           htmlFor="email"
           className="block text-m font-medium text-gray-700 mb-1"

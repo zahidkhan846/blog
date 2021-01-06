@@ -1,6 +1,6 @@
-import moment from "moment";
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+import moment from "moment";
 
 function SinglePost() {
   const [post, setPost] = useState([]);

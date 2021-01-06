@@ -20,7 +20,7 @@ function Signup() {
   return (
     <div className="form-container" onSubmit={handleFormSubmit}>
       <form className="mt-20 p-1">
-        <h1 className="text-3xl mb-4">Signup Page</h1>
+        <h1 className="text-3xl mb-4 text-green-300">Signup Page</h1>
         {error && <p className="mb-2 text-red-400">{error}</p>}
         <label
           htmlFor="email"
@@ -58,8 +58,8 @@ function Signup() {
         </label>
         <input
           type="password"
-          id="password"
-          name="password"
+          id="confirmPassword"
+          name="confirmPassword"
           className="mb-5 h-7 focus:border-grey-500 flex-1 block w-full border-2 border-green-500 rounded sm:text-sm"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

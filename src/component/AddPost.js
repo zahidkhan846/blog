@@ -47,7 +47,7 @@ function AddPost() {
   return (
     <div className="form-container">
       <form className="mt-20 p-1" onSubmit={submitFormHandler}>
-        <h1 className="text-3xl mb-2">Add Post</h1>
+        <h1 className="text-3xl mb-2 text-green-300">Add Post</h1>
         {error && <p className="mb-1 text-red-500">{error}</p>}
         <label
           htmlFor="title"
@@ -74,7 +74,7 @@ function AddPost() {
           <textarea
             id="content"
             name="content"
-            rows="3"
+            rows="5"
             value={content}
             onChange={(event) => setContent(event.target.value)}
             className="mb-5 flex-1 block w-full border-2 border-yellow-500 rounded sm:text-sm"
