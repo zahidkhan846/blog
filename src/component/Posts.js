@@ -28,6 +28,7 @@ function Posts() {
 
   return (
     <>
+      <h1 className="text-5xl m-4 text-center">All Posts</h1>
       {posts.map((post) => {
         const { _id, author, content, createdAt, imageUrl, title } = post;
         return (
@@ -50,7 +51,7 @@ function Posts() {
                 </ul>
                 <div className="text-m mt-2 text-red-300">
                   <p className="text-green-700">Posted by {author}</p>
-                  <p>Creaded Date: {moment(createdAt).format("MMM Do YY")}</p>
+                  <p>Created Date: {moment(createdAt).format("MMM Do YY")}</p>
                 </div>
               </div>
             </Link>

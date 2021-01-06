@@ -1,15 +1,36 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
-function AddPost() {
+function EditPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageName, setImageName] = useState("Upload a file");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
-  // const [editMode, setEditMode] = useState(false);
 
   const history = useHistory();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/feed/post/" + id)
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch post.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        console.log(resData);
+        setTitle(resData.post.title);
+        setContent(resData.post.content);
+        setImage(resData.post.imageUrl);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.message);
+      });
+  }, [id]);
 
   const onFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -24,11 +45,11 @@ function AddPost() {
     formData.append("content", content);
     formData.append("image", image);
 
-    let url = "http://localhost:8080/feed/add-post";
-    let post = "POST";
+    let url = `http://localhost:8080/feed/post/${id}`;
+    let put = "PUT";
 
     fetch(url, {
-      method: post,
+      method: put,
       body: formData,
     })
       .then((res) => {
@@ -47,7 +68,7 @@ function AddPost() {
   return (
     <div className="form-container">
       <form className="mt-20 p-1" onSubmit={submitFormHandler}>
-        <h1 className="text-3xl mb-2">Add Post</h1>
+        <h1 className="text-3xl mb-2">Update Post</h1>
         {error && <p className="mb-1 text-red-500">{error}</p>}
         <label
           htmlFor="title"
@@ -111,4 +132,4 @@ function AddPost() {
   );
 }
 
-export default AddPost;
+export default EditPost;

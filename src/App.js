@@ -10,6 +10,7 @@ import HomePage from "./pages/Homepage";
 import LoginPage from "./pages/LoginPage";
 import Signup from "./component/Auth/Signup";
 import ResetPassword from "./component/Auth/ResetPassword";
+import EditPost from "./component/EditPost";
 
 function App() {
   const [showSidenav, setShowSidenav] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={LoginPage} />
         <Route path="/reset-password" component={ResetPassword} />
+        <Route path="/edit-post/:id" component={EditPost} />
       </Switch>
       <Footer />
     </>
