@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Hero() {
   return (
     <div className="bg-white h-screen flex flex-col justify-center items-center">
-      <h1 className="page-name text-red-300">Blog App</h1>
+      <h1 className="page-name text-yellow-300">Blog App</h1>
       <Link to="/add-post" className="hero-button">
         Add Posts
         <svg

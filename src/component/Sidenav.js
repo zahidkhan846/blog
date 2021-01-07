@@ -7,16 +7,16 @@ function Sidenav({ showSidenav, toggleNavButton }) {
       className={showSidenav ? "sidenav" : "hidden"}
       onClick={toggleNavButton}
     >
-      <Link className="p-4" to="/">
+      <Link className="side-link" to="/">
         Home
       </Link>
-      <Link className="p-4" to="/posts">
+      <Link className="side-link" to="/posts">
         Posts
       </Link>
-      <Link className="p-4" to="/add-post">
+      <Link className="side-link" to="/add-post">
         Add Post
       </Link>
-      <Link className="p-4" to="/login">
+      <Link className="side-link" to="/login">
         Login
       </Link>
     </div>

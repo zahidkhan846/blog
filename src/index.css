@@ -8,7 +8,11 @@
 }
 
 .sidenav {
-  @apply grid grid-rows-4 text-center items-center bg-green-500;
+  @apply grid grid-rows-4 text-center items-center bg-green-500 hover:bg-yellow-300 transition duration-300 ease-in-out;
+}
+
+.side-link {
+  @apply p-4 hover:bg-green-500 transition duration-300 ease-in-out;
 }
 
 .page-name {
@@ -43,4 +47,15 @@ li {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input {
+  padding: 5px;
 }
