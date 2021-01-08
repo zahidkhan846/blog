@@ -25,23 +25,30 @@ function Navbar({ toggleNavButton }) {
         </svg>
       </div>
       <div className="pr-8 md:block hidden">
-        <Link className="p-4" to="/">
-          Home
-        </Link>
-        <Link className="p-4" to="/posts">
-          Posts
-        </Link>
-        <Link className="p-4" to="/add-post">
-          Add Post
-        </Link>
         {!userAuth ? (
-          <Link className="p-4" to="/login">
-            Login
-          </Link>
+          <>
+            <Link className="p-4" to="/">
+              Home
+            </Link>
+            <Link className="p-4" to="/login">
+              Login
+            </Link>
+          </>
         ) : (
-          <button onClick={logoutHandler} className="p-2 btn btn--secondary">
-            Logout
-          </button>
+          <>
+            <Link className="p-4" to="/">
+              Home
+            </Link>
+            <Link className="p-4" to="/posts">
+              Posts
+            </Link>
+            <Link className="p-4" to="/add-post">
+              Add Post
+            </Link>
+            <button onClick={logoutHandler} className="p-2 btn btn--secondary">
+              Logout
+            </button>
+          </>
         )}
       </div>
     </nav>
