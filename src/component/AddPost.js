@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function AddPost() {
+  const { token } = useContext(AuthContext);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageName, setImageName] = useState("Upload a file");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
-  // const [editMode, setEditMode] = useState(false);
 
   const history = useHistory();
 
@@ -28,6 +30,7 @@ function AddPost() {
     let post = "POST";
 
     fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
       method: post,
       body: formData,
     })

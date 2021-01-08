@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function EditPost() {
+  const { token } = useContext(AuthContext);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageName, setImageName] = useState("Upload a file");
@@ -13,7 +16,9 @@ function EditPost() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:8080/feed/post/" + id)
+    fetch(`http://localhost:8080/feed/post/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch post.");
@@ -49,6 +54,7 @@ function EditPost() {
     let put = "PUT";
 
     fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
       method: put,
       body: formData,
     })

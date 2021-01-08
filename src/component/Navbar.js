@@ -45,7 +45,10 @@ function Navbar({ toggleNavButton }) {
             <Link className="p-4" to="/add-post">
               Add Post
             </Link>
-            <button onClick={logoutHandler} className="p-2 btn btn--secondary">
+            <button
+              onClick={logoutHandler}
+              className="p-2 rounded border-2 border-red-500 hover:bg-red-500 hover:text-white transition duration-300 ease-in-out text-red-500"
+            >
               Logout
             </button>
           </>

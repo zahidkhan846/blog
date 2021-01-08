@@ -30,7 +30,10 @@ function Sidenav({ showSidenav, toggleNavButton }) {
           <Link className="side-link" to="/add-post">
             Add Post
           </Link>
-          <button onClick={logoutHandler} className="p-2 btn btn--secondary">
+          <button
+            onClick={logoutHandler}
+            className="p-2 text-red-500 btn btn--secondary"
+          >
             Logout
           </button>
         </>

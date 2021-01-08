@@ -1,8 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
+import { AuthContext } from "../context/AuthContext";
 
 function SinglePost() {
+  const { token } = useContext(AuthContext);
+
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -12,7 +15,11 @@ function SinglePost() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:8080/feed/post/" + id)
+    fetch("http://localhost:8080/feed/post/" + id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch post.");
@@ -34,6 +41,9 @@ function SinglePost() {
 
   const handleDeletePost = (postId) => {
     fetch("http://localhost:8080/feed/post/" + postId, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       method: "DELETE",
     })
       .then((res) => {
