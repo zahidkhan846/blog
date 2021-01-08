@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import HomePage from "../../pages/Homepage";
+import React, { useContext, useState } from "react";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Signup() {
+  const { userAuth } = useContext(AuthContext);
+
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
@@ -43,7 +44,6 @@ function Signup() {
       })
       .then((resData) => {
         console.log(resData);
-        setIsAuth(true);
         setLoading(false);
         history.push("/login");
       })
@@ -54,8 +54,8 @@ function Signup() {
     setLoading(false);
   };
 
-  if (isAuth) {
-    return <HomePage />;
+  if (userAuth) {
+    return <Redirect to="/" />;
   }
 
   return (

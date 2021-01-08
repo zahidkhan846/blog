@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Post } from "./Post";
 import axios from "axios";
 import Pagination from "./Pagination";
+import { AuthContext } from "../context/AuthContext";
 
 function Posts() {
+  const { token, userAuth } = useContext(AuthContext);
+
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -19,7 +22,9 @@ function Posts() {
   };
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:8080/feed/posts");
+    const res = await axios.get("http://localhost:8080/feed/posts", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     try {
       setPosts(res.data.posts);
       setLoading(false);
@@ -31,8 +36,12 @@ function Posts() {
   };
 
   useEffect(() => {
-    fetchPosts();
+    if (userAuth) {
+      fetchPosts();
+    }
   }, []);
+
+  console.log(posts);
 
   if (loading) {
     return (

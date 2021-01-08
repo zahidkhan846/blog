@@ -1,48 +1,27 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
+  const { login, error, userAuth } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
-    fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "appication/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 422) {
-          throw new Error("Validation failed");
-        }
-        if (res.status !== 200 && res.status !== 201) {
-          throw new Error("Validation failed Unable to varify!");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
-        setLoading(false);
-        history.push("/");
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err.message);
-      });
+    await login(email, password);
     setLoading(false);
+    history.push("/");
   };
+
+  if (userAuth) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="form-container">

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function ResetPassword() {
+  const { userAuth } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,6 +37,10 @@ function ResetPassword() {
       });
     setLoading(false);
   };
+
+  if (userAuth) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="form-container">

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar({ toggleNavButton }) {
+  const { userAuth, logoutHandler } = useContext(AuthContext);
+
   return (
     <nav role="navigation" className="navbar">
       <Link to="/" className="pl-8">
@@ -31,9 +34,15 @@ function Navbar({ toggleNavButton }) {
         <Link className="p-4" to="/add-post">
           Add Post
         </Link>
-        <Link className="p-4" to="/login">
-          Login
-        </Link>
+        {!userAuth ? (
+          <Link className="p-4" to="/login">
+            Login
+          </Link>
+        ) : (
+          <button onClick={logoutHandler} className="p-2 btn btn--secondary">
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );
