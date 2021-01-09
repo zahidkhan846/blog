@@ -11,7 +11,6 @@ import LoginPage from "./pages/LoginPage";
 import Signup from "./component/Auth/Signup";
 import ResetPassword from "./component/Auth/ResetPassword";
 import EditPost from "./component/EditPost";
-import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   const [showSidenav, setShowSidenav] = useState(false);
@@ -26,13 +25,13 @@ function App() {
       <Sidenav showSidenav={showSidenav} toggleNavButton={toggleNavButton} />
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <PrivateRoute path="/post/:id" component={SinglePost} />
-        <PrivateRoute path="/posts" component={ContentPage} />
-        <PrivateRoute path="/add-post" component={AddPosts} />
+        <Route path="/post/:id" component={SinglePost} />
+        <Route path="/posts" component={ContentPage} />
+        <Route path="/add-post" component={AddPosts} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={LoginPage} />
         <Route path="/reset-password" component={ResetPassword} />
-        <PrivateRoute path="/edit-post/:id" component={EditPost} />
+        <Route path="/edit-post/:id" component={EditPost} />
       </Switch>
       <Footer />
     </>

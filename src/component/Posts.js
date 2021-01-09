@@ -26,6 +26,7 @@ function Posts() {
       headers: { Authorization: `Bearer ${token}` },
     });
     try {
+      console.log(res);
       setPosts(res.data.posts);
       setLoading(false);
     } catch (error) {

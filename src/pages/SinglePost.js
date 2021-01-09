@@ -16,9 +16,7 @@ function SinglePost() {
   useEffect(() => {
     setLoading(true);
     fetch("http://localhost:8080/feed/post/" + id, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
         if (res.status !== 200) {
@@ -41,9 +39,7 @@ function SinglePost() {
 
   const handleDeletePost = (postId) => {
     fetch("http://localhost:8080/feed/post/" + postId, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       method: "DELETE",
     })
       .then((res) => {
