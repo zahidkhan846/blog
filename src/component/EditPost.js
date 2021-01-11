@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function EditPost() {
@@ -10,15 +10,14 @@ function EditPost() {
   const [imageName, setImageName] = useState("Upload a file");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const history = useHistory();
 
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/feed/post/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch(`http://localhost:8080/feed/post/${id}`)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch post.");
@@ -30,11 +29,14 @@ function EditPost() {
         setTitle(resData.post.title);
         setContent(resData.post.content);
         setImage(resData.post.imageUrl);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setError(err.message);
+        setLoading(false);
       });
+    setLoading(false);
   }, [id]);
 
   const onFileChange = (e) => {
@@ -66,10 +68,17 @@ function EditPost() {
       })
       .then((resData) => {
         console.log(resData);
+        setLoading(false);
       })
       .catch((err) => setError(err.message));
+    setLoading(false);
     history.push("/");
+    setLoading(false);
   };
+
+  if (!token && !loading) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div className="form-container">

@@ -3,9 +3,11 @@ import { Post } from "./Post";
 import axios from "axios";
 import Pagination from "./Pagination";
 import { AuthContext } from "../context/AuthContext";
+import { Redirect } from "react-router-dom";
+import socketIOClient from "socket.io-client";
 
 function Posts() {
-  const { token, userAuth } = useContext(AuthContext);
+  const { userAuth } = useContext(AuthContext);
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,28 +23,39 @@ function Posts() {
     setCurrentPage(pageNumber);
   };
 
-  const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:8080/feed/posts", {
-      headers: { Authorization: `Bearer ${token}` },
+  const addPost = (post) => {
+    setPosts((prevPosts) => {
+      const updatedPosts = [...prevPosts];
+      updatedPosts.unshift(post);
+      return updatedPosts;
     });
+  };
+
+  const fetchPosts = async () => {
+    const res = await axios.get("http://localhost:8080/feed/posts");
     try {
-      console.log(res);
       setPosts(res.data.posts);
       setLoading(false);
     } catch (error) {
-      console.log(error);
-      setLoading(false);
       setError(error.message);
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     if (userAuth) {
       fetchPosts();
+      const socket = socketIOClient("http://localhost:8080", {
+        transports: ["websocket"],
+      });
+      socket.on("posts", (data) => {
+        if (data.action === "create") {
+          addPost(data.post);
+        }
+      });
     }
   }, []);
-
-  console.log(posts);
 
   if (loading) {
     return (
@@ -50,6 +63,10 @@ function Posts() {
         <h1 className="text-3xl mb2">Loading...</h1>
       </div>
     );
+  }
+
+  if (!userAuth && !loading) {
+    return <Redirect to="/" />;
   }
 
   return (
@@ -67,19 +84,3 @@ function Posts() {
 }
 
 export default Posts;
-
-// useEffect(() => {
-//   fetch("http://localhost:8080/feed/posts")
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((resData) => {
-//       setPosts(resData.posts);
-//       setLoading(false);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       setError(error.message);
-//     });
-//   setLoading(false);
-// });

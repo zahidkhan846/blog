@@ -40,7 +40,9 @@ export const Post = ({ posts }) => {
                     <li>{content}</li>
                   </ul>
                   <div className="text-m mt-2 text-red-300">
-                    <p className="text-green-700">Posted by {author}</p>
+                    <p className="text-green-700">
+                      Posted by {author.userName}
+                    </p>
                     <p>Created Date: {moment(createdAt).format("MMM Do YY")}</p>
                   </div>
                 </div>

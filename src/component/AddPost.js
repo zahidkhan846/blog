@@ -26,12 +26,9 @@ function AddPost() {
     formData.append("content", content);
     formData.append("image", image);
 
-    let url = "http://localhost:8080/feed/add-post";
-    let post = "POST";
-
-    fetch(url, {
+    fetch("http://localhost:8080/feed/add-post", {
       headers: { Authorization: `Bearer ${token}` },
-      method: post,
+      method: "POST",
       body: formData,
     })
       .then((res) => {
@@ -42,9 +39,9 @@ function AddPost() {
       })
       .then((resData) => {
         console.log(resData);
+        history.push("/posts");
       })
       .catch((err) => setError(err.message));
-    history.push("/");
   };
 
   return (

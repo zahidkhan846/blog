@@ -1,9 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar({ toggleNavButton }) {
   const { userAuth, logoutHandler } = useContext(AuthContext);
+
+  const history = useHistory();
+
+  const handleLogout = async () => {
+    try {
+      await logoutHandler();
+      history.replace("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <nav role="navigation" className="navbar">
@@ -46,7 +57,7 @@ function Navbar({ toggleNavButton }) {
               Add Post
             </Link>
             <button
-              onClick={logoutHandler}
+              onClick={handleLogout}
               className="p-2 rounded border-2 border-red-500 hover:bg-red-500 hover:text-white transition duration-300 ease-in-out text-red-500"
             >
               Logout

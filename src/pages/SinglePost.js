@@ -15,9 +15,7 @@ function SinglePost() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:8080/feed/post/" + id, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("http://localhost:8080/feed/post/" + id)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch post.");
@@ -32,7 +30,9 @@ function SinglePost() {
       .catch((err) => {
         console.log(err);
         setError(err.message);
+        setLoading(false);
       });
+    setLoading(false);
   }, [id]);
 
   const { _id, author, content, createdAt, imageUrl, title, updatedAt } = post;
@@ -84,7 +84,7 @@ function SinglePost() {
           <span>
             Posted on {moment(createdAt).format("MMMM Do YYYY, h:mm:ss a")}
           </span>
-          <span>Posted by {author}</span>
+          <span>Posted by {author && author.userName}</span>
           <p className="mb-2">POST ID: {_id}</p>
           <span>Last Update {moment(updatedAt).fromNow()}</span>
         </div>
